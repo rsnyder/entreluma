@@ -258,8 +258,38 @@
     const ALLMAPS_BASE = "https://annotations.allmaps.org";
     const WIKIDATA_SPARQL = "https://query.wikidata.org/sparql";
 
+    // Only the editor opts into this bridge. Published maps request tiles
+    // directly using the public site's origin-only referrer policy.
+    const tileBridge = localParams.get('entreluma_tile_bridge') === '1' && top !== window;
+    const bridgeTiles = new Map();
+    if (tileBridge) addEventListener('message', event => {
+      if (event.source !== top || event.data?.kind !== 'entreluma-osm-tile-result') return;
+      const entry = bridgeTiles.get(event.data.id);
+      if (!entry) return;
+      bridgeTiles.delete(event.data.id); clearTimeout(entry.timer);
+      if (!(event.data.blob instanceof Blob)) {entry.done(new Error('Map tile unavailable.'), entry.tile); return;}
+      const url = URL.createObjectURL(event.data.blob);
+      entry.tile.onload = () => {URL.revokeObjectURL(url); entry.done(null, entry.tile);};
+      entry.tile.onerror = () => {URL.revokeObjectURL(url); entry.done(new Error('Map tile unavailable.'), entry.tile);};
+      entry.tile.src = url;
+    });
+    const PreviewTileLayer = L.TileLayer.extend({
+      createTile(coords, done) {
+        const tile = document.createElement('img'); tile.alt = ''; tile.setAttribute('role', 'presentation');
+        const id = crypto.randomUUID();
+        const timer = setTimeout(() => {bridgeTiles.delete(id); done(new Error('Map tile timed out.'), tile);}, 20000);
+        bridgeTiles.set(id, {tile, done, timer});
+        top.postMessage({kind:'entreluma-osm-tile', id, z:coords.z, x:coords.x, y:coords.y}, '*');
+        return tile;
+      }
+    });
+    const tileLayer = (url, options) => tileBridge && url.startsWith('https://tile.openstreetmap.org/')
+      ? new PreviewTileLayer(url, options) : L.tileLayer(url, options);
+
     const baseMapsConfigs = {
-      OpenStreetMap: ["https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+      OpenStreetMap: ["https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        // Identify the site to OSM without exposing story paths or query parameters.
+        referrerPolicy: "strict-origin",
         maxZoom: 19,
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
       }],
@@ -1042,11 +1072,11 @@
         const cfg = baseMapsConfigs[name];
         if (!cfg) continue;
         const [url, options] = cfg;
-        basemapLayers.push([name.replace(/_/g, " "), L.tileLayer(url, options)]);
+        basemapLayers.push([name.replace(/_/g, " "), tileLayer(url, options)]);
       }
       if (!basemapLayers.length) {
         const [url, opts] = baseMapsConfigs.OpenStreetMap;
-        basemapLayers.push(["OpenStreetMap", L.tileLayer(url, opts)]);
+        basemapLayers.push(["OpenStreetMap", tileLayer(url, opts)]);
       }
 
       // Create map
