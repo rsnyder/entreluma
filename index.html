@@ -3,8 +3,8 @@ layout: home
 ---
 
 {% if paginator and paginator.page == 1 %}
-<h1>Stories woven together</h1>
-<p>Entreluma helps you publish interactive stories that bring words, images, maps, and sources into conversation. Write in Markdown, add viewers, and connect your prose to the details readers can explore.</p>
-<p>Start with the example below, read the <a href="{{ '/admin/' | relative_url }}">author guide</a>, or <a href="https://github.com/rsnyder/entreluma/generate">create your own site from the template</a>.</p>
+<h1>{{ site.title | escape }}</h1>
+<p>Welcome to this collection of stories. Explore the example below, then make this site your own.</p>
+<p>Replace this introduction in <code>index.html</code>, set your site title and description in <code>_config.yml</code>, and read the <a href="{{ '/admin/' | relative_url }}">author guide</a> to publish your first story.</p>
 {% include featured_posts.html %}
 {% endif %}

@@ -6,6 +6,7 @@ require 'jekyll'
 require 'tmpdir'
 require 'json'
 require 'cgi'
+require 'uri'
 
 require 'fileutils'
 require 'base64'

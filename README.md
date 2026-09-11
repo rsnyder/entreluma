@@ -37,8 +37,8 @@ CI also checks internal links. External viewer services require network access i
 
 ## Project hosting
 
-For the canonical repository, enable **Template repository** under **Settings → General**, select GitHub Actions in Pages settings, and configure `entreluma.org` as its custom domain with HTTPS. Configure DNS with the domain provider using [GitHub's custom domain instructions](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site).
+`rsnyder/entreluma` is the generic template. Its optional demo uses the default GitHub Pages project URL. The promotional site and its custom domain are maintained in [rsnyder/entreluma-site](https://github.com/rsnyder/entreluma-site); the editor is maintained in `rsnyder/entreluma-editor`.
 
-The domain belongs in the canonical repository's Pages settings. This template deliberately contains no `CNAME` and no fixed deployment URL, so copies have independent hosting. `editor.entreluma.org` belongs to the separate editor deployment; it is not a route or application in this repository.
+This template contains no `CNAME`, fixed deployment URL, owner identity, verification code, or analytics ID. Copies get their own GitHub Pages URL and repository identity from the workflow. Set your title, description, and optional social identity in `_config.yml`, and replace the homepage and About introduction before requesting search indexing.
 
-See [repository boundaries and migration notes](docs/repository-boundary.md) for the selected source files and the editor integration contract.
+For a custom domain, configure it in your own repository's Pages settings using [GitHub's custom domain instructions](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site). Never copy another site's domain or verification codes.

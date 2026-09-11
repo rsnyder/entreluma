@@ -6,12 +6,12 @@
 url: ""
 baseurl: ""
 
-title: Entreluma # the main title
+title: My Stories # replace with your site name
 
-tagline: Weave words, images, maps, and sources. # it will display as the subtitle
+tagline: Stories, places, and perspectives. # replace with your subtitle
 
 description: >- # used by seo meta and the atom feed
-  Publish interactive stories that weave together words, images, maps, and sources.
+  A collection of stories told through words, images, maps, and sources.
 
 # the avatar on sidebar, support local or CORS resources
 avatar: /assets/img/logo.png
@@ -33,21 +33,11 @@ timezone:
 # Import the theme
 theme: jekyll-theme-chirpy
 
-twitter:
-  username: # change to your Twitter username
-
+# Optional public identity. Leave unused fields empty; do not add example accounts.
 social:
-  # Change to your full name.
-  # It will be displayed as the default author of the posts and the copyright owner in the Footer
-  name: Your Name
-  email: example@domain.com # change to your email address
-  links:
-    # The first element serves as the copyright owner's link
-    - https://twitter.com/username # change to your Twitter homepage
-    - https://github.com/username # change to your GitHub homepage
-    # Uncomment below to add more social links
-    # - https://www.facebook.com/username
-    # - https://www.linkedin.com/in/username
+  name: # your name or organization
+  email:
+  links: []
 
 # Site Verification Settings
 webmaster_verifications:
@@ -174,6 +164,10 @@ collections:
     sort_by: order
 
 defaults:
+  - scope:
+      path: "assets/components"
+    values:
+      sitemap: false
   - scope:
       path: "" # An empty string here means all files in the project
       type: posts

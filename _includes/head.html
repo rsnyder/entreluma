@@ -6,7 +6,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta
     name="viewport"
-    content="width=device-width, user-scalable=no initial-scale=1, shrink-to-fit=no, viewport-fit=cover"
+    content="width=device-width, initial-scale=1, viewport-fit=cover"
   >
 
   {%- capture seo_tags -%}
@@ -56,6 +56,9 @@
   {% endif %}
 
   <title>
+    {%- if page.seo_title -%}
+      {{- page.seo_title | escape -}}
+    {%- else -%}
     {%- unless page.layout == 'home' -%}
       {%- capture title -%}
         {%- if page.collection == 'tabs' -%}
@@ -68,6 +71,7 @@
       {{- title | append: ' | ' -}}
     {%- endunless -%}
     {{- site.title -}}
+    {%- endif -%}
   </title>
 
   {% include_cached favicons.html %}
