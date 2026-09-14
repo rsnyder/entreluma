@@ -35,6 +35,17 @@ bundle exec jekyll build
 
 CI also checks internal links. External viewer services require network access in the reader's browser.
 
+## Update template copies
+
+Template copies include a manifest-driven sync tool for reusable framework files. Check a copy for upstream drift, review the affected paths, and then apply the update:
+
+```sh
+python3 tools/sync_code.py --check
+python3 tools/sync_code.py --apply
+```
+
+Site configuration, stories, media, branding, and local documentation are not overwritten. See [Syncing Entreluma template copies](docs/upstream-sync.md) for the complete ownership boundary, pinned revisions, and local-checkout usage.
+
 ## Project hosting
 
 `rsnyder/entreluma` is the generic template. Its optional demo uses the default GitHub Pages project URL. The promotional site and its custom domain are maintained in [rsnyder/entreluma-site](https://github.com/rsnyder/entreluma-site); the editor is maintained in `rsnyder/entreluma-editor`.

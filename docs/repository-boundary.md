@@ -8,7 +8,7 @@
 
 Copied the publishing runtime from the local `rsnyder/storykit-starter` working tree without its Git history. Retained pinned Ruby/theme dependencies, the Pages workflow, local-media rendering checks, Leaflet assets, existing book icon/favicons, and the Monument Valley example and its local image.
 
-Omitted the legacy upstream-sync script and drift check, old author-guide collection and regression fixture, documentation screenshots and unused example media, and technical history. The source repository and editor repository were not modified. The initial destination README description is retained.
+Omitted the old author-guide collection and regression fixture, documentation screenshots and unused example media, and technical history. Template copies use the manifest-driven `tools/sync_code.py` described in [upstream-sync.md](upstream-sync.md) to check and apply reusable framework changes without overwriting site-owned content.
 
 ## Entreluma integration contract
 

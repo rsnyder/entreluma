@@ -282,8 +282,10 @@ script_includes:
                 {%- endif %}
                 {% unless forloop.last %}{{ '</em>, <em>' }}{% endunless %}
               {% endfor %}
+            {% elsif site.social.links.size > 0 %}
+              <a href="{{ site.social.links[0] }}">{{ site.social.name | default: site.title | escape }}</a>
             {% else %}
-              <a href="{{ site.social.links[0] }}">{{ site.social.name }}</a>
+              {{ site.social.name | default: site.title | escape }}
             {% endif %}
           </em>
         </span>
