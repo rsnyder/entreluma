@@ -30,10 +30,14 @@ Open `http://127.0.0.1:4000`. Verify changes with:
 ```sh
 node --test tools/test_iiif.mjs
 node --test tools/test_vimeo.mjs
+node --test tools/test_pagefind.mjs
 python3 tools/check_consistency.py
 bundle exec ruby tools/prove_local_media.rb
 bundle exec jekyll build
 ```
+
+Production deployments generate a Pagefind search index after the Jekyll build.
+See [Search](docs/search.md) for local Pagefind testing and deployment details.
 
 CI also checks internal links. External viewer services require network access in the reader's browser.
 
