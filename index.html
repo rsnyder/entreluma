@@ -1,10 +1,8 @@
 ---
 layout: home
+show_posts: false
 ---
 
-{% if paginator and paginator.page == 1 %}
 <h1>{{ site.title | escape }}</h1>
-<p>Welcome to this collection of stories. Explore the example below, then make this site your own.</p>
-<p>Replace this introduction in <code>index.html</code>, set your site title and description in <code>_config.yml</code>, and read the <a href="{{ '/admin/' | relative_url }}">author guide</a> to publish your first story.</p>
-{% include featured_posts.html %}
-{% endif %}
+<p>Welcome to this collection of interactive stories. Explore the example, then make this site your own.</p>
+<p><a href="{{ '/examples/' | relative_url }}">Browse the stories</a>, read the <a href="{{ '/admin/' | relative_url }}">author guide</a>, or replace this introduction in <code>index.html</code> with an introduction to your project.</p>

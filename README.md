@@ -16,6 +16,20 @@ The workflow detects the repository owner, name, site origin, and base path from
 
 The published author guide is at `/admin/`. The editor is optional; Markdown can be edited directly on GitHub. Set `entreluma.editor_url` in `_config.yml` to change the guide's editor link, or leave it empty to hide it.
 
+## Homepage and examples
+
+The starter uses a dedicated homepage and lists published posts at `/examples/`.
+The Examples tab uses the same Entreluma cards and list/grid control as the
+traditional post homepage, but it can remain separate while the collection is
+small. Edit `index.html` to introduce your project and `_tabs/examples.md` to
+introduce its stories.
+
+The reusable post index lives in `_includes/post-index.html`. To return to a
+traditional blog-style homepage, remove `show_posts: false` from `index.html`;
+the standard `home` layout will render the post index beneath the page content.
+See the [Dedicated Homepage and Examples Index](_admin/2026-09-15-entreluma-dedicated-homepage.md)
+guide for migration steps, customization boundaries, and verification.
+
 ## Local development
 
 Use the Ruby version in `.ruby-version` and Bundler:
