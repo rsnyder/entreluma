@@ -28,6 +28,7 @@ bundle exec jekyll serve --livereload
 Open `http://127.0.0.1:4000`. Verify changes with:
 
 ```sh
+node --test tools/test_iiif.mjs
 python3 tools/check_consistency.py
 bundle exec ruby tools/prove_local_media.rb
 bundle exec jekyll build
