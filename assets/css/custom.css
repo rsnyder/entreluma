@@ -1,1 +1,16 @@
-/* Custom styling */
+/* Keep the navy artwork legible in both light and dark themes. */
+#sidebar #avatar {
+  background: #fff;
+  box-shadow: none;
+}
+
+#sidebar #avatar img {
+  width: 100%;
+  height: 100%;
+  padding: 6px;
+  object-fit: contain;
+}
+
+#sidebar #avatar img:hover {
+  transform: none;
+}

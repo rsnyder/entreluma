@@ -26,7 +26,6 @@
     </linearGradient>
   </defs>
 
-  <circle cx="627" cy="538.5" r="381" fill="#fff"/>
   <circle id="circle" cx="627" cy="538.5" r="365.5" fill="none" stroke="#002769" stroke-width="31"/>
   <g id="symbol">
     <path id="top-bar" fill="url(#top-blue)" d="M424 331 H684 C650 356 628 391 600 430 H424 C396.4 430 374 408 374 380.5 C374 353 396.4 331 424 331 Z"/>
