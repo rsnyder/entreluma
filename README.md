@@ -14,6 +14,8 @@ Project site: [entreluma.org](https://entreluma.org). The optional [Entreluma Ed
 
 The workflow detects the repository owner, name, site origin, and base path from GitHub Pages. Project sites, account sites, and configured custom domains use the same template. You do not need to edit `url` or `baseurl` for Pages. Branch-based Pages builds are not supported: the theme and custom plugins require the included Actions workflow.
 
+**Forking instead:** a fork works the same way and needs no configuration edits, but GitHub disables workflows in new forks. Open the **Actions** tab and select **I understand my workflows, go ahead and enable them**, then follow steps 2 and 3 above (start the first run with **Run workflow**). The site is published at `/<fork-name>`, so rename the fork if you want a different URL.
+
 The published author guide is at `/admin/`. The editor is optional; Markdown can be edited directly on GitHub. Set `entreluma.editor_url` in `_config.yml` to change the guide's editor link, or leave it empty to hide it.
 
 ## Homepage and examples
