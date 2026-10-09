@@ -53,6 +53,7 @@ Verify changes with:
 node --test tools/test_iiif.mjs
 node --test tools/test_vimeo.mjs
 node --test tools/test_pagefind.mjs
+node --test tools/test_article_export.mjs
 python3 tools/check_consistency.py
 bundle exec ruby tools/prove_local_media.rb
 JEKYLL_ENV=production bundle exec jekyll build
