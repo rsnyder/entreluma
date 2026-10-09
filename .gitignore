@@ -15,3 +15,6 @@ node_modules/
 __pycache__/
 *.pyc
 .DS_Store
+
+# Generated export test output
+/output/
