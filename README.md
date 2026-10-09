@@ -39,7 +39,13 @@ bundle install
 bundle exec jekyll serve --livereload
 ```
 
-Open `http://127.0.0.1:4000`. Verify changes with:
+Open `http://127.0.0.1:4000`. Install the Node build tools (Pagefind and sharp, used for search indexing and deployment image optimization) with Node.js 22:
+
+```sh
+npm ci
+```
+
+Verify changes with:
 
 ```sh
 node --test tools/test_iiif.mjs
@@ -47,11 +53,15 @@ node --test tools/test_vimeo.mjs
 node --test tools/test_pagefind.mjs
 python3 tools/check_consistency.py
 bundle exec ruby tools/prove_local_media.rb
-bundle exec jekyll build
+JEKYLL_ENV=production bundle exec jekyll build
+node tools/optimize_deployment_images.mjs _site/assets/posts
+ruby tools/check_deployment_size.rb _site 900000000
 ```
 
 Production deployments generate a Pagefind search index after the Jekyll build.
 See [Search](docs/search.md) for local Pagefind testing and deployment details.
+
+The deployment workflow also shrinks oversized post images in the generated `_site` copy (source media is never modified) and fails if the Pages artifact exceeds 900 MB. JPEGs are limited to 2400 pixels on their longest side at quality 82; PNG recompression is lossless unless an image must be resized. Set `ENTRELUMA_IMAGE_MAX_DIMENSION`, `ENTRELUMA_JPEG_QUALITY`, or `ENTRELUMA_IMAGE_CONCURRENCY` to experiment locally.
 
 CI also checks internal links. External viewer services require network access in the reader's browser.
 
