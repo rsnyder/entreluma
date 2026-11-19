@@ -238,3 +238,4 @@ entreluma:
   downloads: true             # show local PDF and Word downloads in the toolbar
   pdf: true                   # legacy alias used when downloads is not configured
   post_navigation: true       # show the post navigation links at the end of posts
+  citation_publisher:         # citation_publisher meta tag and JSON-LD publisher (default: site title)
